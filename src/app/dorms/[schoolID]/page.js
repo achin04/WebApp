@@ -1,3 +1,4 @@
+import { AdminAddDorm } from '@/containers/admin/AdminAddDorm';
 import { getDorms, getSchoolFromSchoolID } from '@/lib/reads';
 import Link from 'next/link';
 
@@ -45,6 +46,8 @@ export default async function Page({ params }) {
           );
         })}
       </ul>
+
+      <AdminAddDorm schoolID={schoolID}/>
     </div>
   );
 }

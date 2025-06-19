@@ -4,7 +4,6 @@ import { useAuth } from '@/lib/useAuth';
 import Link from 'next/link';
 
 export const Header = () => {
-  
   const { user, loading } = useAuth();
 
   return (
