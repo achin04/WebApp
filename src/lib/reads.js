@@ -32,6 +32,21 @@ export const getSchoolFromSchoolID = async (schoolID) => {
   return (await getDoc(doc(db, 'schools', schoolID))).data();
 };
 
+export const getDormFromDormID = async (dormID) => {
+  return (await getDoc(doc(db, 'dorms', dormID))).data();
+};
+
 export const userIsAdmin = async (uid) => {
   return (await getDoc(doc(db, 'admins', uid))).exists();
-}
+};
+
+export const getReviews = async (dormID) => {
+  return (
+    await getDocs(
+      query(collection(db, 'reviews'), where('dormID', '==', dormID))
+    )
+  ).docs.map((docSnap) => ({
+    ...docSnap.data(),
+    id: docSnap.id,
+  }));
+};
