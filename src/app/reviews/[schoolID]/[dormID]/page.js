@@ -1,3 +1,4 @@
+import { WriteReview } from '@/containers/WriteReview';
 import {
   getDormFromDormID,
   getReviews,
@@ -33,7 +34,10 @@ export default async function Page({ params }) {
         </Link>
 
         <h1 className='text-3xl font-bold'>{dorm.dormName} Reviews</h1>
+        {dorm.rating && <p> {dorm.rating.toFixed(1)}/5 stars </p>}
       </div>
+
+      <WriteReview dorm={dorm} school={school} />
 
       <div className='space-y-4'>
         {reviews.map((review) => {
