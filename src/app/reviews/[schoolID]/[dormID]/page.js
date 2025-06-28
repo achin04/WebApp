@@ -1,3 +1,4 @@
+import { Review } from '@/components/Reviews';
 import { StarRating } from '@/components/StarRating';
 import { WriteReview } from '@/containers/WriteReview';
 import {
@@ -47,11 +48,11 @@ export default async function Page({ params }) {
         {reviews.map((review) => {
           return (
             <div key={review.id}>
-              <div className='space-y-3 w-ful border p-4 rounded-xl'>
-                <StarRating rating={review.rating} readOnly />
-
-                <p>{review.comment}</p>
-              </div>
+              <Review 
+                uid={review.uid}
+                rating={review.rating} 
+                comment={review.comment} 
+                date={review.date.toDate().toLocaleDateString('en-US')}/>
             </div>
           );
         })}
