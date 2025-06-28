@@ -1,3 +1,4 @@
+import { StarRating } from '@/components/StarRating';
 import { AdminAddDorm } from '@/containers/admin/AdminAddDorm';
 import { getDorms, getSchoolFromSchoolID } from '@/lib/reads';
 import Link from 'next/link';
@@ -32,15 +33,18 @@ export default async function Page({ params }) {
         </p>
       </div>
 
-      <ul>
+      <ul className='space-y-4'>
         {dorms.map((dorm) => {
           return (
-            <li key={dorm.dormID}>
-              <Link
-                className='hover:underline'
-                href={`/reviews/${schoolID}/${dorm.dormID}`}
-              >
-                {dorm.dormName}
+            <li className='rounded-xl border p-4' key={dorm.dormID}>
+              <Link href={`/reviews/${schoolID}/${dorm.dormID}`}>
+                <section className='space-y-1'>
+                  <h3 className='font-medium text-xl'>{dorm.dormName}</h3>
+
+                  <StarRating readOnly rating={dorm.rating} />
+
+                  <p>{dorm.numReviews || 0} reviews</p>
+                </section>
               </Link>
             </li>
           );

@@ -4,6 +4,7 @@ import { useAuth } from '@/lib/useAuth';
 import { setReviewDoc } from '@/lib/writes';
 import { useState } from 'react';
 import { Timestamp } from 'firebase/firestore';
+import { StarRating } from '@/components/StarRating';
 
 export const WriteReview = ({ dorm, school }) => {
   const [comment, setcomment] = useState('');
@@ -49,15 +50,7 @@ export const WriteReview = ({ dorm, school }) => {
       <form className='space-y-8' onSubmit={submitReview}>
         <div className='space-y-1'>
           <p className='font-medium'>Rate the dorm</p>
-          <input
-            type='number'
-            className='w-full border-gray-400 border p-2 rounded'
-            placeholder='Enter rating 1-5'
-            min={1}
-            max={5}
-            value={rating}
-            onChange={(e) => setrating(e.target.value)}
-          />
+          <StarRating rating={Number(rating)} setrating={setrating}/>
         </div>
 
         <div className='space-y-1'>
